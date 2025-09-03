@@ -1,6 +1,7 @@
 package com.xpto.CadastroDeFuncionarios.Usuarios;
 
 
+import com.xpto.CadastroDeFuncionarios.Missoes.MissoesModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,9 +11,17 @@ public class UsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    // @ManyToOne um ninja tem uma unica missao, Many Usuarios para One missa
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreing Key(Chave Estrangeira)
+    private MissoesModel missoes;
 
     //Construtor no args
     public UsuarioModel(){
