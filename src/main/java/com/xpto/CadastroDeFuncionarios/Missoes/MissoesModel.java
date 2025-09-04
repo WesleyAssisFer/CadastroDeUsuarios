@@ -2,11 +2,17 @@ package com.xpto.CadastroDeFuncionarios.Missoes;
 
 import com.xpto.CadastroDeFuncionarios.Usuarios.UsuarioModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_missoes")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class MissoesModel {
 
     @Id
@@ -21,32 +27,6 @@ public class MissoesModel {
     @OneToMany(mappedBy = "missoes")
     private List<UsuarioModel> usario;
 
-
-    // Construtor no args
-    public MissoesModel(){
-
-    }
-
-    // Construtor all args
-    public MissoesModel(String nomeMissao, String rank, UsuarioModel usuario){
-        this.nome = nomeMissao;
-        this.rank = rank;
-
-    }
-
-    public String getNomeMissao(){
-        return this.nome;
-    }
-    public void setNomeMissao(String nomeMissao){
-        this.nome = nomeMissao;
-    }
-
-    public String getRank(){
-        return this.rank;
-    }
-    public void setRank(String rank){
-        this.rank = rank;
-    }
 
 
 }
