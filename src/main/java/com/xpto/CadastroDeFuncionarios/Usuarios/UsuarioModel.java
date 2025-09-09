@@ -16,9 +16,14 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "img_url")
+    private String imgUrl;
 
     @Column(unique = true)
     private String email;
