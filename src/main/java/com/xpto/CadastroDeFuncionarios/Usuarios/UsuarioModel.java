@@ -22,12 +22,13 @@ public class UsuarioModel {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "img_url")
-    private String imgUrl;
-
     @Column(unique = true)
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "idade")
     private int idade;
 
     // @ManyToOne um ninja tem uma unica missao, Many Usuarios para One missa
