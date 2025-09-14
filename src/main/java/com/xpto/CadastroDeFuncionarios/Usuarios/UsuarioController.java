@@ -3,7 +3,7 @@ package com.xpto.CadastroDeFuncionarios.Usuarios;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/usuario")
 
 public class UsuarioController {
 
@@ -20,13 +20,13 @@ public class UsuarioController {
     }
 
     // Mostrar todos os Usuario (READ)
-    @GetMapping("/todos")
+    @GetMapping("/listar")
     public String motrarTodosUsuario(){
         return "Mostrando o Usuario";
     }
 
     // Mostrar Usuarios por ID (READ)
-    @GetMapping("/todosID")
+    @GetMapping("/listarID")
     public String mostrarTodosUsuariosPorId(){
         return "Motrar Usuario por id";
     }
