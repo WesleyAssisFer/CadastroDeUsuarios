@@ -32,7 +32,7 @@ public class MissoesController {
 
     // Read - por ID
     @GetMapping("/listarID/{id}")
-    public MissoesModel listarId(@PathVariable Long id){
+    public MissoesModel listarMissoePorId(@PathVariable Long id){
         return missoesService.listarPorId(id);
     }
 

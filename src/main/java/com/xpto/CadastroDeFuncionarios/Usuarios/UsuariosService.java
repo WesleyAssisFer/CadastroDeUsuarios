@@ -3,6 +3,7 @@ package com.xpto.CadastroDeFuncionarios.Usuarios;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -21,8 +22,8 @@ public class UsuariosService {
     }
 
     public UsuarioModel listarUsuarioId(Long id){
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+        Optional<UsuarioModel> userModelPorId = usuarioRepository.findById(id);
+        return userModelPorId.orElse(null);
     }
 
 }

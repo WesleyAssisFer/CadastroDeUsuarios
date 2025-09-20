@@ -3,6 +3,7 @@ package com.xpto.CadastroDeFuncionarios.Missoes;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MissoesService {
@@ -17,9 +18,9 @@ public class MissoesService {
         return missoesRepository.findAll();
     }
 
-    public MissoesModel listarPorId(Long id) {
-        return missoesRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Missão não encontrada"));
-    }
+   public MissoesModel listarPorId(Long id){
+       Optional<MissoesModel> missoesModelPorId = missoesRepository.findById(id);
+       return missoesModelPorId.orElse(null);
+   }
 
 }
