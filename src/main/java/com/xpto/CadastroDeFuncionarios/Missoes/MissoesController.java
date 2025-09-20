@@ -4,10 +4,17 @@ import jakarta.persistence.ManyToOne;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/missoes")
 
 public class MissoesController {
+    private MissoesService missoesService;
+
+    public MissoesController(MissoesService missoesService){
+        this.missoesService = missoesService;
+    }
 
     //  Post -- mandar uma requisão para criar as missoes
     // Create
@@ -19,8 +26,14 @@ public class MissoesController {
     //  Get -- mandar uma requisão para mostrar as missoes
     // Read
     @GetMapping("/listar")
-    public String motrarMissao(){
-        return "Mostrar Missão";
+    public List<MissoesModel> listarMissao(){
+        return missoesService.listarMissoes() ;
+    }
+
+    // Read - por ID
+    @GetMapping("/listarID/{id}")
+    public MissoesModel listarId(@PathVariable Long id){
+        return missoesService.listarPorId(id);
     }
 
     //  Put -- mandar uma requisão para atualizar as missoes

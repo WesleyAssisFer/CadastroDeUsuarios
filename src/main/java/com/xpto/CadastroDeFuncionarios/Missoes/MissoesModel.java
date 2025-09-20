@@ -1,5 +1,6 @@
 package com.xpto.CadastroDeFuncionarios.Missoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.xpto.CadastroDeFuncionarios.Usuarios.UsuarioModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class MissoesModel {
 
     // @OneToMany Uma missao, para varios Usuarios
     @OneToMany(mappedBy = "missoes")
+    @JsonIgnore
     private List<UsuarioModel> usario;
 
 
