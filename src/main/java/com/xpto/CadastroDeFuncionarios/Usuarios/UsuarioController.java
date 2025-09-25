@@ -23,8 +23,8 @@ public class UsuarioController {
 
     // Adicionar Usuario (CREATE)
     @PostMapping("/criar")
-    public UsuarioModel criarUsario(@RequestBody UsuarioModel usario){
-        return usuariosService.criarUsuario(usario);
+    public UsuarioModel criarUsario(@RequestBody UsuarioModel usuario){
+        return usuariosService.criarUsuario(usuario);
     }
 
     // Mostrar todos os Usuario (READ)
@@ -47,9 +47,9 @@ public class UsuarioController {
 
 
     // Deletar Usuario (DELETE)
-    @DeleteMapping("/deletarID")
-    public String deletarUsuarioPorId(){
-        return "Usuario deletado por id";
+    @DeleteMapping("/deletarID/{id}")
+    public void deletarUsuarioPorId(@PathVariable Long id){
+       usuariosService.deletarPorId(id);
     }
 
 }

@@ -30,4 +30,19 @@ public class UsuariosService {
         return usuarioRepository.save(usuario);
     }
 
+    // Atualizar Usuario(Update)
+    public UsuarioModel usuarioAtualiza(Long id, UsuarioModel usarioAtt){
+        UsuarioModel usuarioExistente = usuarioRepository.findById(id)
+                .orElseThrow(() ->)
+
+
+        return usuarioRepository.save(usarioAtt);
+    }
+
+    // Delatar Usuario
+    public void deletarPorId(Long id){
+        usuarioRepository.deleteById(id);
+    }
+
+
 }
