@@ -1,5 +1,6 @@
 package com.xpto.CadastroDeFuncionarios.Usuarios;
 
+import com.xpto.CadastroDeFuncionarios.Missoes.MissoesModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,9 +41,9 @@ public class UsuarioController {
     }
 
     // Alterar dados dos Usuarios (UPDATE)
-    @PutMapping("/alterarID")
-    public String alterarUsuarioPorId(){
-        return "Alterar Usuario por id";
+    @PutMapping("/alterar/{id}")
+    public UsuarioModel alterarUsuarioPorId(@PathVariable Long id, @RequestBody UsuarioModel atulizarUsuario){
+        return usuariosService.atualizarUsuario(id,atulizarUsuario);
     }
 
 

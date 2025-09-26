@@ -31,12 +31,12 @@ public class UsuariosService {
     }
 
     // Atualizar Usuario(Update)
-    public UsuarioModel usuarioAtualiza(Long id, UsuarioModel usarioAtt){
-        UsuarioModel usuarioExistente = usuarioRepository.findById(id)
-                .orElseThrow(() ->)
-
-
-        return usuarioRepository.save(usarioAtt);
+    public UsuarioModel atualizarUsuario(Long id, UsuarioModel usuarioAtualizado) {
+     if(usuarioRepository.existsById(id)){
+         usuarioAtualizado.setId(id);
+         return usuarioRepository.save(usuarioAtualizado);
+     }
+        return null;
     }
 
     // Delatar Usuario
