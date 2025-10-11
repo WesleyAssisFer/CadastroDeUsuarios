@@ -10,10 +10,11 @@ import java.util.Optional;
 public class UsuariosService {
 
     private UsuarioRepository usuarioRepository;
+    private UsuarioMapper usuarioMapper;
 
-    public UsuariosService(UsuarioRepository usuarioRepository){
+    public UsuariosService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper){
         this.usuarioRepository = usuarioRepository;
-
+        this.usuarioMapper = usuarioMapper;
     }
 
     // Listar Usuarios
@@ -26,8 +27,10 @@ public class UsuariosService {
         return userModelPorId.orElse(null);
     }
     // Criar um novo Usuario
-    public UsuarioModel criarUsuario(UsuarioModel usuario){
-        return usuarioRepository.save(usuario);
+    public UsuarioDTO criarUsuario(UsuarioDTO usuarioDTO){
+        UsuarioModel usuario = usuarioMapper.map(usuarioDTO);
+        usuario = usuarioRepository.save(usuario);
+        return usuarioMapper.map(usuario);
     }
 
     // Atualizar Usuario(Update)
