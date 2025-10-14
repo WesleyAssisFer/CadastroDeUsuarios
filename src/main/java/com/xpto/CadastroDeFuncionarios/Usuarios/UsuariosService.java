@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -18,13 +19,16 @@ public class UsuariosService {
     }
 
     // Listar Usuarios
-    public List<UsuarioModel> listarUsuarios(){
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> listarUsuarios(){
+        List<UsuarioModel> usuarios = usuarioRepository.findAll();
+        return usuarios.stream()
+                .map(usuarioMapper::map)
+                .collect(Collectors.toList());
     }
     // Listar Usuario por Id
-    public UsuarioModel listarUsuarioId(Long id){
+    public UsuarioDTO listarUsuarioId(Long id){
         Optional<UsuarioModel> userModelPorId = usuarioRepository.findById(id);
-        return userModelPorId.orElse(null);
+        return userModelPorId.map(usuarioMapper::map).orElse(null);
     }
     // Criar um novo Usuario
     public UsuarioDTO criarUsuario(UsuarioDTO usuarioDTO){
@@ -34,12 +38,15 @@ public class UsuariosService {
     }
 
     // Atualizar Usuario(Update)
-    public UsuarioModel atualizarUsuario(Long id, UsuarioModel usuarioAtualizado) {
-     if(usuarioRepository.existsById(id)){
-         usuarioAtualizado.setId(id);
-         return usuarioRepository.save(usuarioAtualizado);
-     }
-        return null;
+    public UsuarioDTO atualizarUsuario(Long id, UsuarioDTO usuarioDTO) {
+         Optional<UsuarioModel> userExistente = usuarioRepository.findById(id);
+         if(userExistente.isPresent()){
+           UsuarioModel usuarioAtualizado = usuarioMapper.map(usuarioDTO);
+           usuarioAtualizado.setId(id);
+           UsuarioModel userSalvo = usuarioRepository.save(usuarioAtualizado);
+           return usuarioMapper.map(userSalvo);
+         }
+         return null;
     }
 
     // Delatar Usuario

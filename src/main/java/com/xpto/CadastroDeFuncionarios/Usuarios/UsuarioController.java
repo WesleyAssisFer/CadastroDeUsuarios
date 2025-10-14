@@ -16,12 +16,6 @@ public class UsuarioController {
         this.usuariosService = usuariosService;
     }
 
-    @GetMapping("/boas-vindas")
-    public String boasVindas(){
-        return "Mensagem dessa rota";
-    }
-
-
     // Adicionar Usuario (CREATE)
     @PostMapping("/criar")
     public UsuarioDTO criarUsario(@RequestBody UsuarioDTO usuario){
@@ -30,20 +24,20 @@ public class UsuarioController {
 
     // Mostrar todos os Usuario (READ)
     @GetMapping("/listar")
-    public List<UsuarioModel> listarUsuario(){
+    public List<UsuarioDTO> listarUsuario(){
         return usuariosService.listarUsuarios();
     }
 
     // Mostrar Usuarios por ID (READ)
     @GetMapping("/listarID/{id}")
-    public UsuarioModel mostrarUsuariosPorId(@PathVariable Long id){
+    public UsuarioDTO mostrarUsuariosPorId(@PathVariable Long id){
         return usuariosService.listarUsuarioId(id);
     }
 
     // Alterar dados dos Usuarios (UPDATE)
     @PutMapping("/alterar/{id}")
-    public UsuarioModel alterarUsuarioPorId(@PathVariable Long id, @RequestBody UsuarioModel atulizarUsuario){
-        return usuariosService.atualizarUsuario(id,atulizarUsuario);
+    public UsuarioDTO alterarUsuarioPorId(@PathVariable Long id, @RequestBody UsuarioDTO atualizarUsuario){
+        return usuariosService.atualizarUsuario(id,atualizarUsuario);
     }
 
 
